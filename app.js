@@ -21,8 +21,15 @@ function goodbyeWorld(req,res,next) {
 };
 
 app.use(logger);
-app.use('/hello', helloWorld);
-app.use('/goodbye', goodbyeWorld);
+app.use('/hello', (req,res,next) => {res.setHeader('Content-Type', 'text/plain'); 
+res.end("Hello World")});
+
+app.use('/goodbye', (req,res,next) => {res.setHeader('Content-Type', 'text/plain'); 
+res.end("Goodbye Cruel World")});
+
+app.use('/', (req,res,next) => {res.setHeader('Content-Type', 'text/plain'); 
+res.end("Welcome")});
+
 app.listen(3000);
 
 const hostname = '127.0.0.1';
